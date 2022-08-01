@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    background-color: #1b1b1b;
+    padding: 10px 0;
+    z-index: 10;
+}
+
+nav .menu {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    /* 这里加max-width是由很大意义的，当我们窗口化的时候，我们的宽度肯定是小于1250px的 */
+    /* 配合上面的margin 0 auto 可以水平居中，这时候看到的是logo和ul都贴着两边 */
+    /* 当我们的全屏话，我们的width是大于1250px的，但是经过上面margin，我们还是可以水平居中的 */
+    /* 这时候我们看到的就是logo和ul水平居中对齐了。 */
+    /* 如果以后的我不明白，你就把1250px注释掉，然后看看结果对比一下你就明白了。 */
+    max-width: 1250px;
+    padding: 0 20px;
+}
+
+.menu .logo a {
+    color: #fff;
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.menu ul {
+    /* 和inline-block是一个意思，有着flex的特性，但是是行内元素，不自己独占一行 */
+    display: inline-flex;
+    justify-content: space-between;
+    /* margin-left: 20px; */
+    /* 不设置width无法使用flex */
+    width: 400px;
+}
+
+.menu ul li {
+    /* margin-left: 10px; */
+}
+
+.menu ul li:first-child {
+    margin-left: 0px;
+}
+
+.menu ul li a {
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 10px 8px;
+    transition: all 0.3s ease;
+}
+
+.menu ul li a:hover {
+    color: #000;
+    background: #fff;
+}
+
+.bgi {
+    background-image: url(img3.jpg);
+    background-repeat: none;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+}
+
+.bgi::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.center h3 {
+    font-size: 35px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.center h4 {
+    font-size: 35px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.center .btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.btns button {
+    margin-top: 10px;
+
+    width: 125px;
+    height: 40px;
+
+    font-size: 15px;
+    color: #fff;
+    border: 2px solid white;
+    border-radius: 5px;
+    background: none;
+    transition: all 0.5s ease;
+}
+
+.btns button:hover {
+    background-color: #fff;
+    color: #000;
+}
