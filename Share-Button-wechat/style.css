@@ -1,0 +1,181 @@
+/* 初始化页面 */
+* {
+    margin: 0;
+    padding: 0;
+
+    /* 告诉浏览器：你想要设置的边框和内边距的值是包含在 width 内的。
+    也就是说，如果你将一个元素的 width 设为 100px，那么这 100px 会包含它的 border 和 padding，
+    内容区的实际宽度是 width 减 去(border + padding) 的值。 */
+    box-sizing: border-box;
+
+    font-family: 'Microsoft-Yahei', sans-serif;
+}
+
+/* 页面背景颜色 */
+body {
+    /* radial-gradient() 函数用径向渐变创建 "图像"。
+       #333是开始的颜色，#000是结束的颜色，其中可以有很多别的颜色参与渐变，这里只用了两个 */
+    background: radial-gradient(#333, #000);
+
+    /* vh就是当前屏幕可见高度的1%，也就是说
+
+    height:100vh == height:100%;
+
+    但是当元素没有内容时候，设置height:100%，该元素不会被撑开，此时高度为0，
+
+    但是设置height:100vh，该元素会被撑开与屏幕高度一致。
+    
+    总结：设置height:100vh，能够保证元素无论是否有没有内容，高度都等于屏幕高度。*/
+
+    height: 100vh;
+}
+
+/* mainbox盒子的样式 */
+.mainbox {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* translate只是定义2d的转换，其实也就是平移，在这里就是居中放置
+       其他的例子https://www.w3school.com.cn/cssref/pr_transform.asp
+       记得做笔记
+       这里的50%指的是相对于自己大小的50% */
+    transform: translate(-50%, -50%);
+}
+
+/* label文字框的样式书写 */
+label {
+    /* display: inline-block; */
+    position: relative;
+    background: #fff;
+    width: 150px;
+    height: 50px;
+    /* 圆矩形，我们学习过 */
+    border-radius: 50px;
+    line-height: 50px;
+    /* margin-bottom: 50px; */
+    text-align: center;
+    font-size: 22px;
+    font-weight: 500;
+    display: block;
+    color: #333;
+    /* 改变鼠标的指针，我们是学过的 */
+    cursor: pointer;
+    /* 盒子阴影，我们学过，后面的是透明色 */
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    /* 首先transition的效果是动画的过度效果
+       all指的是所有属性都将获得过度的效果 */
+    transition: all 0.3s ease;
+}
+
+/* 给文字加点hover效果 */
+label:hover {
+    /* letter-spacing 属性增加或减少字符间的空白（字符间距） */
+    letter-spacing: 2px;
+}
+
+/* 制作取消文字框，用before伪元素 */
+label::before {
+    content: "取消";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background: #fff;
+    border-radius: 50px;
+    /* 透明度为0，先不展示 */
+    opacity: 0;
+}
+
+/* 处理input选框 */
+#check {
+    /* 隐藏元素，并且不占有原来的位置 */
+    display: none;
+}
+
+/* 通过input选框状态，切换取消文字的透明度为1 */
+/* element1~element2 选择器匹配出现在 element1 后面的 element2。
+
+element1 和 element2 这两种元素必须具有相同的父元素，
+但 element2 不必紧跟在 element1 的后面。 */
+
+/* :checked 选择器匹配每个选中的输入元素（仅适用于单选按钮或复选框）
+   目前的效果是，当我们选中这个按钮的时候，我们设置透明度为1，也就是显示 */
+#check:checked~label::before {
+    opacity: 1;
+}
+
+/* 修改图标样式 */
+.media-icons {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -25px;
+    /* translateX(x)定义转换，只是用 X 轴的值。 */
+    transform: translateX(-50%);
+    background: #FFF;
+    width: 100%;
+    height: 100%;
+    /* 弹性盒子 */
+    display: flex;
+    /* 居中 */
+    align-items: center;
+    /* 水平等间距的拉开 */
+    justify-content: space-evenly;
+    border-radius: 50px;
+    /* 看着会更紧凑一点 */
+    padding: 4px;
+    z-index: -1;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+/* 通过input选框状态，切换图标框 */
+#check:checked~.media-icons {
+    opacity: 1;
+    width: 140%;
+    height: 110%;
+    pointer-events: auto;
+    top: -84px;
+}
+
+/* 制作小三角，上课用的知识，用边框来做 */
+.media-icons::before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 161%);
+    border: 12px solid transparent;
+    border-top-color: #fff;
+}
+
+.media-icons a {
+    font-size: 22px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.media-icons a:hover {
+    transform: translateY(-2px);
+}
+
+/* 为每一个icon修改颜色 */
+/* :nth-child(n) 选择器匹配属于其父元素的第 N 个子元素，不论元素的类型。
+n 可以是数字、关键词或公式。 */
+.media-icons a:nth-child(1):hover {
+    color: #000000;
+}
+
+.media-icons a:nth-child(2):hover {
+    color: #7bb32e;
+}
+
+.media-icons a:nth-child(3):hover {
+    color: #DF2029;
+}
+
+.media-icons a:nth-child(4):hover {
+    color: #000000;
+}

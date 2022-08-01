@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 关联css样式和图标库 -->
+    <link rel="stylesheet" href="./style.css">
+    <!-- 这个地方时链接icon所用的网址，下面的i标签就是用网址中的icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 页面结构的编写 -->
+    <div class="mainbox">
+        <!-- checkbox 为复选框，我们学过 -->
+        <input type="checkbox" id="check">
+        <!-- label标签用于绑定一个表单元素
+
+            当点击label标签内的文本的时候，游览器就会自动将光标移动到相应的表单上，增加体验
+            
+            注意点是id要与label中的for是一致的 -->
+        <label for="check">分享</label>
+        <div class="media-icons">
+            <!-- 为了页面结构的简化，可以去掉li -->
+            <a href="#"><i class="fab fa-qq"></i></a>
+            <a href="#"><i class="fab fa-weixin"></i></a>
+            <a href="#"><i class="fab fa-weibo"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+
+    </div>
+</body>
+
+</html>

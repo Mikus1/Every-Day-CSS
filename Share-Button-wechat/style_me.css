@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    /* 告诉浏览器：你想要设置的边框和内边距的值是包含在 width 内的。
+    也就是说，如果你将一个元素的 width 设为 100px，那么这 100px 会包含它的 border 和 padding，
+    内容区的实际宽度是 width 减 去(border + padding) 的值。 */
+    box-sizing: border-box;
+}
+
+html {
+    /* html的父亲是游览器,它肯定可以得到高度,但是使用vh以后就没必要l */
+    /* height: 100%; */
+}
+
+body {
+    /* radial-gradient() 函数用径向渐变创建 "图像"。
+       #333是开始的颜色，#000是结束的颜色，其中可以有很多别的颜色参与渐变，这里只用了两个 */
+    background: radial-gradient(#333, #000);
+    /* 视窗均分为100单位vh。vh的优点是可以直接获得高度，而不设置 body和html的高度.
+       也就是说,这个高度是以视窗为参考单位进行高度设置,而对于100%是对于父标签设置的,如果父标签设置的是auto这种,那就无法得到正确的值
+       所以设置100vh是一个不错的方法 */
+    height: 100vh;
+    /* height: 100%; */
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: #333;
+}
+
+/* mainBox */
+.mainBox {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    /* translate只是定义2d的转换，其实也就是平移，这里是根据自身的高度向上移动一半 */
+    transform: translateY(-50%);
+}
+
+/* label开始 */
+.mainBox>label {
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%);
+    width: 125px;
+    height: 50px;
+
+    text-align: center;
+    line-height: 50px;
+    font-size: 22px;
+
+    cursor: pointer;
+    border-radius: 50px;
+    background-color: #fff;
+    /* 首先transition的效果是动画的过度效果
+       all指的是所有属性都将获得过度的效果 */
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+label::before {
+    content: "取消";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    cursor: pointer;
+    border-radius: 50px;
+    background-color: #fff;
+    transition: none 0.3s ease;
+    /* 透明度为0，先不展示 */
+    opacity: 0;
+}
+
+.mainBox>label:hover {
+    /* letter-spacing 属性增加或减少字符间的空白（字符间距） */
+    letter-spacing: 2px;
+}
+
+
+#check {
+    /* 隐藏元素，并且不占有原来的位置 */
+    display: none;
+    position: absolute;
+    top: -100px;
+    margin-left: -75px;
+}
+
+/* icon开始 */
+.icon {
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%);
+    width: 125px;
+    height: 50px;
+
+    line-height: 50px;
+
+    border-radius: 50px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.icon::before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    transform: translateX(-50%);
+    border: 0px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.icon>ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.icon>ul>li {
+    transition: all 0.3s ease;
+}
+
+.icon>ul>li:hover {
+    transform: translateY(-3px);
+}
+
+/* element1 和 element2 这两种元素必须具有相同的父元素，
+但 element2 不必紧跟在 element1 的后面。 */
+
+/* :checked 选择器匹配每个选中的输入元素（仅适用于单选按钮或复选框）
+   目前的效果是，当我们选中这个按钮的时候，我们设置透明度为1，也就是显示 */
+#check:checked~.icon {
+    top: -77px;
+    width: 150px;
+    transform: translateX(-50%);
+    opacity: 1;
+}
+
+#check:checked~.icon::before {
+    border: 12px solid transparent;
+    border-top-color: #fff;
+}
+
+#check:checked~label::before {
+    opacity: 1;
+}
+
+/* 为图标上色 */
+.icon>ul>li:nth-child(1)>a:hover {
+    color: #FF6699;
+}
+
+.icon>ul>li:nth-child(2)>a:hover {
+    color: #000;
+}
+
+.icon>ul>li:nth-child(3)>a:hover {
+    color: #11D41C;
+}
+
+.icon>ul>li:nth-child(4)>a:hover {
+    color: #000;
+}
